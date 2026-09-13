@@ -1,0 +1,6 @@
+{
+  "name": "Bean to Bar Chocolate & Coated Nuts Course",
+  "description": "An interactive, comprehensive masterclass covering bean-to-bar chocolate making, panning coated nuts, recipe calculator, tempering simulation, and an AI chocolatier tutor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,120 @@
+{
+  "entities": {
+    "ingredient": {
+      "title": "Ingredient",
+      "description": "Raw material or packaging item with its unit cost.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["beans", "sugar", "cocoa_butter", "inclusions", "packaging"] },
+        "costPerKg": { "type": "number" },
+        "userId": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "category", "costPerKg", "userId", "updatedAt"]
+    },
+    "recipe": {
+      "title": "Recipe",
+      "description": "Chocolate formulation recipe with ingredients, percentage ratios, and parameters.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "cocoaPercentage": { "type": "number" },
+        "ingredients": {
+          "type": "array"
+        },
+        "lossFactor": { "type": "number" },
+        "barWeightGrams": { "type": "number" },
+        "packagingCostPerUnit": { "type": "number" },
+        "userId": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "cocoaPercentage", "ingredients", "lossFactor", "barWeightGrams", "packagingCostPerUnit", "userId", "updatedAt"]
+    },
+    "costingRun": {
+      "title": "Costing Run",
+      "description": "A saved batch costing and financial margin projection run.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "recipeId": { "type": "string" },
+        "recipeName": { "type": "string" },
+        "batchSizeKg": { "type": "number" },
+        "hourlyLaborRate": { "type": "number" },
+        "laborHoursNeeded": { "type": "number" },
+        "overheadFixed": { "type": "number" },
+        "wholesaleMarkup": { "type": "number" },
+        "retailMarkup": { "type": "number" },
+        "totalCost": { "type": "number" },
+        "costPerBar": { "type": "number" },
+        "wholesalePrice": { "type": "number" },
+        "retailPrice": { "type": "number" },
+        "totalRevenue": { "type": "number" },
+        "totalProfit": { "type": "number" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": [
+        "id", "recipeId", "recipeName", "batchSizeKg", "hourlyLaborRate", "laborHoursNeeded",
+        "overheadFixed", "wholesaleMarkup", "retailMarkup", "totalCost", "costPerBar",
+        "wholesalePrice", "retailPrice", "totalRevenue", "totalProfit", "userId", "createdAt"
+      ]
+    },
+    "student": {
+      "title": "Student",
+      "description": "Student profile, authorization, and connection metadata.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string" },
+        "registeredAt": { "type": "string" },
+        "lastLogin": { "type": "string" },
+        "suspended": { "type": "boolean" },
+        "approved": { "type": "boolean" }
+      },
+      "required": ["uid", "email", "fullName", "registeredAt", "lastLogin"]
+    },
+    "fillingRecipe": {
+      "title": "Filling Recipe",
+      "description": "Custom confectionery filling recipe formulated in the Recipe Lab with target shelf life, water activity, and pH barriers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "fillingType": { "type": "string" },
+        "targetShelfLife": { "type": "string" },
+        "waterActivity": { "type": "number" },
+        "pH": { "type": "number" },
+        "ingredients": { "type": "array" },
+        "userId": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "fillingType", "targetShelfLife", "waterActivity", "pH", "ingredients", "userId", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": "student",
+      "description": "Student registry records, sharing protection, and admission approval status."
+    },
+    "/ingredients/{ingredientId}": {
+      "schema": "ingredient",
+      "description": "User custom chocolate raw ingredients and costing data."
+    },
+    "/recipes/{recipeId}": {
+      "schema": "recipe",
+      "description": "User chocolate recipe ratios and cost calculations."
+    },
+    "/costingRuns/{runId}": {
+      "schema": "costingRun",
+      "description": "User saved batch costing calculations and sales projections."
+    },
+    "/fillingRecipes/{recipeId}": {
+      "schema": "fillingRecipe",
+      "description": "User-saved custom confectionery filling recipes with molecular food safety diagnostics."
+    }
+  }
+}
